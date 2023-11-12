@@ -1,0 +1,7 @@
+.register__link-container {
+    margin: 0 auto;
+    width: 358px;
+    display: flex;
+    justify-content: center;
+    padding-top: 15px;
+}

@@ -1,0 +1,10 @@
+.loginregister__input {
+  background-color: #000;
+  color: #CCC;
+  width: 100%;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #CCC;
+  font-size: 14px;
+  line-height: 2;
+}
