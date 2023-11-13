@@ -38,7 +38,6 @@ function App() {
 
         api.getInitialCards()
           .then(initialCardsData => {
-            console.log('initialCardsData', initialCardsData);
             setCards(initialCardsData);
           })
           .catch(console.error);
