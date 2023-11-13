@@ -38,6 +38,7 @@ function App() {
 
         api.getInitialCards()
           .then(initialCardsData => {
+            console.log('initialCardsData', initialCardsData);
             setCards(initialCardsData);
           })
           .catch(console.error);
@@ -54,7 +55,7 @@ function App() {
       auth.checkToken(jwt).then((res) => {
         if (res) {
           setLoggedIn(true);
-          setEmail(res.data.email);
+          setEmail(res.email);
           navigate("/", { replace: true })
         }
       })

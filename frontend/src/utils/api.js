@@ -1,67 +1,68 @@
 class Api {
-    constructor({ baseUrl, headers }) {
-        this.baseUrl = baseUrl;
-        this.headers = headers;
-    }
+  constructor({ baseUrl, headers }) {
+    this.baseUrl = baseUrl;
+    this.headers = headers;
+  }
 
-    _handleResponce(res) {
-        if (res.ok) {
-            return res.json();
-        }
-        else {
-            return Promise.reject(`Ошибка: ${res.status}`);
-        }
+  _handleResponce(res) {
+    if (res.ok) {
+      return res.json();
     }
+    else {
+      return Promise.reject(`Ошибка: ${res.status}`);
+    }
+  }
 
-    _fetch(url, method, body) {
-        const bodyStr = body === null ? null : JSON.stringify(body);
-        return fetch(
-            `${this.baseUrl}/${url}`,
-            {
-                method: method,
-                headers: this.headers,
-                body: bodyStr
-            })
-            .then(res => this._handleResponce(res));
-    }
+  _fetch(url, method, body) {
+    const bodyStr = body === null ? null : JSON.stringify(body);
 
-    getInitialCards() {
-        return this._fetch('cards', 'GET', null);
-    }
+    const headers = { ...this.headers };
+    const jwt = localStorage.getItem('jwt');
+    if (jwt)
+      headers.authorization = `Bearer ${jwt}`;
 
-    getUserData() {
-        return this._fetch('users/me', 'GET', null);
-    }
+    return fetch(
+      `${this.baseUrl}/${url}`,
+      {
+        method,
+        headers,
+        body: bodyStr
+      })
+      .then(res => this._handleResponce(res));
+  }
 
-    updateUserData(userData) {
-        return this._fetch('users/me', 'PATCH', userData);
-    }
+  getInitialCards() {
+    return this._fetch('cards', 'GET', null);
+  }
 
-    updateLikeCard(cardId, doLike) {
-        return this._fetch(`cards/${cardId}/likes`, doLike ? 'PUT' : 'DELETE');
-    }
+  getUserData() {
+    return this._fetch('users/me', 'GET', null);
+  }
 
-    addCard(cardData) {
-        return this._fetch('cards', 'POST', cardData);
-    }
+  updateUserData(userData) {
+    return this._fetch('users/me', 'PATCH', userData);
+  }
 
-    deleteCard(cardId) {
-        return this._fetch(`cards/${cardId}`, 'DELETE');
-    }
+  updateLikeCard(cardId, doLike) {
+    return this._fetch(`cards/${cardId}/likes`, doLike ? 'PUT' : 'DELETE');
+  }
 
-    updateAvatar(avatarLink) {
-        return this._fetch('users/me/avatar', 'PATCH', { avatar: avatarLink });
-    }
+  addCard(cardData) {
+    return this._fetch('cards', 'POST', cardData);
+  }
+
+  deleteCard(cardId) {
+    return this._fetch(`cards/${cardId}`, 'DELETE');
+  }
+
+  updateAvatar(avatarLink) {
+    return this._fetch('users/me/avatar', 'PATCH', { avatar: avatarLink });
+  }
 }
 
-
-const token = "bce6d191-3989-4204-b7fe-718a349295c8";
-const cohort = "cohort-72";
-
 export default new Api({
-    baseUrl: `https://mesto.nomoreparties.co/v1/${cohort}`,
-    headers: {
-        authorization: token,
-        'Content-Type': 'application/json'
-    }
+  baseUrl: 'https://api.travel.students.nomoredomainsmonster.ru',
+  headers: {
+    'Content-Type': 'application/json'
+  }
 });

@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.travel.students.nomoredomainsmonster.ru';
 
 function _handleResponce(res) {
   if (res.ok) {

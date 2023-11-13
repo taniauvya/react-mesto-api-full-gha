@@ -7,6 +7,7 @@ const notFoundMessage = 'Карточка с данным ID не найдена
 
 module.exports.getCards = (req, res, next) => {
   Card.find({})
+    .populate(['likes', 'owner'])
     .then((cards) => res.send(cards))
     .catch(next);
 };
@@ -40,6 +41,7 @@ function changeCardLike(req, res, next, doLike) {
     { new: true },
   )
     .orFail()
+    .populate(['likes', 'owner'])
     .then((card) => res.send(card))
     .catch((err) => handleUpdateErr(next, err, notFoundMessage));
 }
