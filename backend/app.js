@@ -3,8 +3,7 @@ const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
-
-require('dotenv').config();
+const cors = require('./middlewares/cors');
 
 // Слушаем 3000 порт
 const { PORT = 3000 } = process.env;
@@ -16,6 +15,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(requestLogger);
+app.use(cors);
 
 app.get('/crash-test', () => {
   setTimeout(() => {
