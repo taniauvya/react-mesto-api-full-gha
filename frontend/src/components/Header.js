@@ -2,15 +2,9 @@ import logo from '../images/logo.svg';
 import React from 'react';
 import { useLocation, useNavigate, Link } from 'react-router-dom';
 
-export default function Header({email}) {
+export default function Header({email, signOut}) {
 
     const { pathname } = useLocation();
-    const navigate = useNavigate();
-
-    function signOut() {
-        localStorage.removeItem('jwt');
-        navigate('/signin', { replace: true });
-    }
 
     let elem;
     if (pathname === '/signin') {

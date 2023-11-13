@@ -171,11 +171,17 @@ function App() {
       });
   }
 
+  function handleSignOut() {
+    localStorage.removeItem('jwt');
+    setLoggedIn(false);
+    navigate('/signin', { replace: true });
+  }
+
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
-        <Header email={email} />
+        <Header email={email} signOut={handleSignOut} />
 
         <InfoTooltip isOpen={isRegisterResultPopupOpen} onClose={closeAllPopups} isSuccess={!isRegisterError} name="register"
           titleSuccess="Вы успешно зарегистрировались!" titleError="Что-то пошло не так! Попробуйте ещё раз." />
