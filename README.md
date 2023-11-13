@@ -7,7 +7,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 130.193.41.104
+IP 130.193.41.104
 
 Frontend https://api.travel.students.nomoredomainsmonster.ru
 
