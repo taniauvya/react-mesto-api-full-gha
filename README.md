@@ -9,7 +9,7 @@
 
 IP 130.193.41.104
 
-Frontend https://api.travel.students.nomoredomainsmonster.ru
+Frontend https://travel.students.nomoredomainsmonster.ru
 
 Backend https://api.travel.students.nomoredomainsmonster.ru
 
